@@ -5,14 +5,12 @@ from tkinter import messagebox
 import db
 import os
 
-def mainapp()
+def _MainFunc():
     root = Tk()
     root.configure(bg = "navy blue")
     root.title("Rent Management")
     width, height = root.winfo_screenwidth(), root.winfo_screenheight()
     root.geometry('%dx%d+0+0' % (width,height))
-
-
 
     # Fuctions
     def _ClearData():
@@ -233,7 +231,6 @@ def mainapp()
 def register_user():
     username_info = username.get()
     password_info = password.get()
-
     file = open(username_info, 'w')
     file.write(username_info+"\n")
     file.write(password_info)
@@ -263,6 +260,7 @@ def register():
     Button(screen1, text="Submit", height="2", width='30', command = register_user).pack()
 
 def login_verify():
+    login = False
     username1 = username_verify.get()
     password1 = password_verify.get()
     list_of_dir = os.listdir()
@@ -270,12 +268,16 @@ def login_verify():
         file = open (username1, "r")
         verify  = file.read().splitlines()
         if password1 in verify:
-            print("Success")
+            print("Success!!")
+            login = True
         else:
             print("Wrong password")
     
     else:
         print("User not found ")
+
+    if login == True:
+        _MainFunc()
 
 def login():
     global screen2
