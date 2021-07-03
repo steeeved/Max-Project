@@ -308,7 +308,7 @@ def login():
 def main_screen():
     global screen
     screen = Tk()
-    screen.geometry("300x250")
+    screen.geometry("300x250")           
     Label(text="Tkinter Login").pack()
     Label(text="", height='2', width="30")
     Button(text="Login", height="2", width="30", bg="blue", command = login).pack()
@@ -316,4 +316,4 @@ def main_screen():
     Button(text="Register", height = "2", width = "30", bg="green", command = register).pack()
     screen.mainloop()
 
-main_screen()
+main_screen()    
