@@ -5,6 +5,8 @@ from tkinter import messagebox
 import db
 import os
 
+passcode = ""
+
 def _MainFunc():
     root = Tk()
     root.configure(bg = "navy blue")
@@ -254,28 +256,31 @@ def register():
     username_entry = Entry(screen1, textvariable = username)
     username_entry.pack()
     Label(screen1, text="Password * ", height='2', width='30').pack()
-    password_entry = Entry(screen1, textvariable = password)
+    password_entry = Entry(screen1, show="*")
     password_entry.pack()
+    passcode = password_entry.get()
     Label(screen1, text='', height = "2", width="30").pack()
     Button(screen1, text="Submit", height="2", width='30', command = register_user).pack()
+    if password_entry.get() == "" or username_entry.get() == "":
+        messagebox.showerror("Error", "Please fill in all the fields")
+
 
 def login_verify():
     login = False
     username1 = username_verify.get()
     password1 = password_verify.get()
     list_of_dir = os.listdir()
+    print(username1 == "")
     if username1 in list_of_dir:
         file = open (username1, "r")
         verify  = file.read().splitlines()
         if password1 in verify:
-            print("Success!!")
             login = True
-        else:
-            print("Wrong password")
-    
+        elif password1 not in verify and password1 != "":
+            messagebox.showerror("Error", "Wrong Password!")
     else:
-        print("User not found ")
-
+        messagebox.showerror("Error", "Username not found!")
+              
     if login == True:
         _MainFunc()
 
@@ -295,7 +300,7 @@ def login():
     username_entry1 = Entry(screen2, textvariable = username_verify)
     username_entry1.pack()
     Label(screen2, text="Password : ", height = "2", width="30").pack()
-    password_entry1 = Entry (screen2, textvariable = password_verify)
+    password_entry1 = Entry (screen2, show="*")
     password_entry1.pack()
     Label(screen2, text="", height="2", width="30").pack()
     Button(screen2, text="Login", height = "2", width="30", command = login_verify).pack()

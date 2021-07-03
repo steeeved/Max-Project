@@ -58,4 +58,9 @@ def _dataUpdate(id,CustomerID="", F_Name="",  Surname="", T_Address="", P_Code="
     con.commit()
     con.close()
 
+
+
+
+
+
 TenantDetails()
