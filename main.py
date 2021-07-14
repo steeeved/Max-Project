@@ -4,15 +4,19 @@ from tkinter import *
 from tkinter import messagebox
 import db
 import os
+from PIL import ImageTk, Image
 
 passcode = ""
 
 def _MainFunc():
     root = Tk()
-    root.configure(bg = "navy blue")
     root.title("Rent Management")
     width, height = root.winfo_screenwidth(), root.winfo_screenheight()
     root.geometry('%dx%d+0+0' % (width,height))
+    img = ImageTk.PhotoImage(Image.open("Images/1626196594581.jpg"))
+    label = Label(root,image=img)
+    label.place(x=0, y=0)
+
 
     # Fuctions
     def _ClearData():
@@ -316,4 +320,5 @@ def main_screen():
     Button(text="Register", height = "2", width = "30", bg="green", command = register).pack()
     screen.mainloop()
 
-main_screen()    
+_MainFunc()
+  
